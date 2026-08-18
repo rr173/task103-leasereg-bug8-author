@@ -122,8 +122,5 @@ func (s *Store) DeleteResource(ctx context.Context, name string, now int64) erro
 	if n == 0 {
 		return ErrResourceNotFound
 	}
-	if _, err := tx.ExecContext(ctx, `DELETE FROM fencing_counters WHERE resource = ?`, name); err != nil {
-		return fmt.Errorf("delete fencing counter: %w", err)
-	}
 	return tx.Commit()
 }
